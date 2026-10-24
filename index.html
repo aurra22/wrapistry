@@ -71,7 +71,7 @@ footer{background:var(--navy);color:#fff;padding:40px 18px 90px;font-size:.9rem}
 </style>
 </head>
 <body>
-<div class="top"><span>Perfect Gift for Every Occasion</span><a href="#contact">Contact Us</a><a href="#corporate">Corporate Gifts</a><span>Reminders &amp; Order Updates: coming soon</span></div>
+<div class="top"><span>Perfect Gift for Every Occasion</span><a href="#contact">Contact Us</a><a href="#corporate">Corporate Gifts</a></div>
 <!-- Order tracking / reminders are NOT included: they need a backend (server), which this free site does not have. -->
 
 <header>
@@ -112,7 +112,7 @@ footer{background:var(--navy);color:#fff;padding:40px 18px 90px;font-size:.9rem}
 
 <section id="shop" class="soft"><div class="wrap">
  <h2>Popular Gift Ideas</h2>
- <p class="note"><b>Sample ideas.</b> Not real sales data or confirmed stock. Pictures shown as illustrations are temporary and will be replaced with real Wrapistry photos. Prices are confirmed on WhatsApp.</p>
+ <p class="note"><b>Sample ideas &amp; prices.</b> These are illustrated examples, not real sales data or confirmed stock. Final items and price are confirmed with you on WhatsApp.</p>
  <div class="chips" id="colChips" aria-label="Collections"></div>
  <p id="filterInfo" class="sub" style="margin-bottom:12px"></p>
  <div class="grid" id="grid"></div>
@@ -153,11 +153,10 @@ footer{background:var(--navy);color:#fff;padding:40px 18px 90px;font-size:.9rem}
 
 <section id="order" class="soft"><div class="wrap two">
  <div class="box"><h2>Your Cart</h2><div id="cartList"></div>
-  <div class="sum"><span>Known-price subtotal</span><span id="sub">Rs. 0</span></div>
-  <small style="color:var(--mut)">Only items with a listed price are counted. "Price on Request" items, customization and delivery charges are confirmed on WhatsApp.</small></div>
+  <div class="sum"><span>Estimated subtotal</span><span id="sub">Rs. 0</span></div>
+  <small style="color:var(--mut)">Estimate from sample prices. Customization, delivery charges and final price are confirmed on WhatsApp.</small></div>
  <form id="orderForm" novalidate>
   <h2>Create Your Gift</h2>
-  <label for="f-name">Your name *</label><input id="f-name" required placeholder="Your full name" autocomplete="name">
   <div class="fg">
    <div><label for="f-rec">Recipient</label><input id="f-rec" placeholder="e.g. my sister"></div>
    <div><label for="f-occ">Occasion</label><input id="f-occ" placeholder="e.g. Birthday"></div>
@@ -196,7 +195,6 @@ footer{background:var(--navy);color:#fff;padding:40px 18px 90px;font-size:.9rem}
 
 <section id="contact"><div class="wrap" style="text-align:center">
  <h2>Let's Plan Your Gift</h2><p class="sub" style="margin:0 auto 20px">Message us on WhatsApp to ask about ideas, cities and timelines.</p>
- <p><b>WhatsApp:</b> <a href="https://wa.me/923216963032" target="_blank" rel="noopener">+92 321 6963032</a><br><b>Instagram:</b> <a href="https://instagram.com/wrapistryy.co" target="_blank" rel="noopener">@wrapistryy.co</a></p>
  <a class="btn" id="waContact" target="_blank" rel="noopener">Chat on WhatsApp</a>
 </div></section>
 </main>
@@ -212,37 +210,36 @@ footer{background:var(--navy);color:#fff;padding:40px 18px 90px;font-size:.9rem}
 
 <script>
 /* ============ EDIT THESE VALUES ============ */
-const WA_NUMBER = "923216963032"; // Wrapistry WhatsApp +92 321 6963032 (international format, no + sign, no spaces)
+const WA_NUMBER = "923XXXXXXXXX"; // <-- YOUR WhatsApp number: international format, NO + sign, no spaces. Example: 923001234567
 const HERO_IMG  = "";             // <-- optional: your hero photo, e.g. "images/hero.jpg"
-const INSTAGRAM = "https://instagram.com/wrapistryy.co"; // @wrapistryy.co
+const INSTAGRAM = "";             // <-- full link e.g. "https://instagram.com/yourpage" (shows only if filled)
 const FACEBOOK  = "";             // <-- full link (shows only if filled)
 const TIKTOK    = "";             // <-- full link (shows only if filled)
 
-/* PRODUCTS: edit name (n), price in PKR (p). p:0 shows "Price on Request"; type your real price when you decide it. Also edit, description (d), options (o).
+/* PRODUCTS: edit name (n), price in PKR (p), description (d), options (o).
    img: "images/yourphoto.jpg" -> shows YOUR photo. Leave "" to show the built-in illustration.
    tags = occasions it suits. rec = him / her / friends / family. */
 const PRODUCTS = [
- {id:1,n:"Pink Photo Memory Box",col:"Memory Boxes",tags:"birthday anniversary valentine romantic missyou sorry engagement",rec:"her friends",p:0,d:"Keepsake box with a photo collage, notes and small surprises.",o:"Photos, names, box color, message card",k:"box",a:"#F9DDE4",b:"#E78FA9",img:""},
- {id:2,n:"Anniversary Memory Box",col:"Memory Boxes",tags:"anniversary wedding engagement nikah bridal romantic",rec:"him her",p:0,d:"Your story in photos, dates and handwritten notes.",o:"Photos, dates, colors, message",k:"box",a:"#E4DCF5",b:"#9F86D6",img:""},
- {id:3,n:"Hot Wheels Bouquet, Black Wrap",col:"Hot Wheels Bouquets",tags:"birthday fathers graduation eid thankyou",rec:"him friends",p:0,d:"A Hot Wheels car with flowers in elegant black wrapping.",o:"Car choice, flower colors, note",k:"car",a:"#D6E8F7",b:"#1F1F2E",img:""},
- {id:4,n:"Hot Wheels Bouquet, Blue Wrap",col:"Hot Wheels Bouquets",tags:"birthday fathers graduation eid sorry",rec:"him friends",p:0,d:"Car and flower bouquet wrapped in navy blue.",o:"Car choice, flower colors, note",k:"car",a:"#F9DDE4",b:"#1F2A4A",img:""},
- {id:5,n:"Birthday Memory Box with Fairy Lights",col:"Birthday Gift Boxes",tags:"birthday friendship",rec:"her him friends",p:0,d:"Photos, fairy lights and personalized decorations.",o:"Photos, age or name, colors",k:"lights",a:"#E4DCF5",b:"#F2A3BC",img:""},
- {id:6,n:"Self-Care Hamper",col:"Self-Care Hampers",tags:"womens mothers daughters getwell thankyou birthday",rec:"her family",p:0,d:"Teddy bear, chocolates, scrunchies, fluffy socks and a mug.",o:"Colors, mug design, extras",k:"care",a:"#F9DDE4",b:"#C9B3F0",img:""},
- {id:7,n:"Strawberry Gift Box",col:"Customized Gift Hampers and Baskets",tags:"birthday valentine thankyou friendship daughters",rec:"her friends",p:0,d:"Strawberry-themed treats and keepsakes.",o:"Contents, colors, note",k:"berry",a:"#FFF0E6",b:"#E04F5F",img:""},
- {id:8,n:"Cute Strawberry Mug",col:"Personalized Mugs",tags:"birthday friendship thankyou teachers",rec:"her friends",p:0,d:"Personalized mug with name or short message.",o:"Name, message, color",k:"mug",a:"#F9DDE4",b:"#E04F5F",img:""},
- {id:9,n:"Photo Collage Frame",col:"Photo Collage Boxes",tags:"anniversary birthday mothers fathers wedding friendship",rec:"him her family",p:0,d:"Your favorite pictures in one frame.",o:"Photos, frame color, caption",k:"frame",a:"#D6E8F7",b:"#7A1F3D",img:""},
- {id:10,n:"Handmade Card",col:"Scrapbooks",tags:"birthday valentine sorry missyou thankyou eid teachers mothers",rec:"him her friends family",p:0,d:"Hand-finished card with your message.",o:"Message, colors, theme",k:"card",a:"#E4DCF5",b:"#F2A3BC",img:""},
- {id:11,n:"Mini Scrapbook",col:"Scrapbooks",tags:"anniversary birthday friendship missyou romantic",rec:"him her friends",p:0,d:"A small book of your memories.",o:"Photos, pages, theme",k:"card",a:"#FFF0E6",b:"#9F86D6",img:""},
- {id:12,n:"Romantic Hamper",col:"Customized Gift Hampers and Baskets",tags:"valentine anniversary romantic sorry missyou engagement",rec:"him her",p:0,d:"Flowers, chocolates and keepsakes in a curated box.",o:"Flowers, chocolates, note",k:"care",a:"#F9DDE4",b:"#7A1F3D",img:""},
- {id:13,n:"Gift Basket for Him",col:"Gifts for Him",tags:"birthday fathers thankyou graduation eid",rec:"him",p:0,d:"Curated around his hobbies and favorites.",o:"Hobbies, colors, items",k:"basket",a:"#D6E8F7",b:"#1F2A4A",img:""},
- {id:14,n:"Mini Budget Gift",col:"Personalized Mugs",tags:"teachers thankyou friendship eid birthday ramadan",rec:"friends family",p:0,d:"A small, sweet gift with a personal touch.",o:"Theme, colors, note",k:"mug",a:"#E4DCF5",b:"#6FA8DC",img:""},
- {id:15,n:"Corporate Gift Box",col:"Corporate and Bulk Gifts",tags:"newyear eid ramadan christmas",rec:"family",p:0,d:"Bulk boxes for teams and clients. Minimum quantity confirmed on WhatsApp.",o:"Quantity, branding colors, note",k:"box",a:"#D6E8F7",b:"#1F2A4A",img:""},
- {id:17,n:"Teddy Bear Gift Box",col:"Teddy Bear Gift Boxes",tags:"birthday valentine sorry missyou getwell daughters",rec:"her family",p:0,d:"A cuddly teddy with treats and a personal note.",o:"Bear size, colors, items, note",k:"care",a:"#E4DCF5",b:"#E78FA9",img:""},
- {id:16,n:"Mango Gift Basket (Seasonal)",col:"Customized Gift Hampers and Baskets",tags:"mango eid eidul birthday thankyou",rec:"family friends",p:0,d:"A seasonal basket. Availability depends on mango season.",o:"Size, wrapping, note",k:"mango",a:"#FFF0E6",b:"#F5B63D",img:""}
+ {id:1,n:"Pink Photo Memory Box",col:"Personalized Memory Boxes",tags:"birthday anniversary valentine romantic missyou sorry engagement",rec:"her friends",p:3500,d:"Keepsake box with a photo collage, notes and small surprises.",o:"Photos, names, box color, message card",k:"box",a:"#F9DDE4",b:"#E78FA9",img:""},
+ {id:2,n:"Anniversary Memory Box",col:"Personalized Memory Boxes",tags:"anniversary wedding engagement nikah bridal romantic",rec:"him her",p:4500,d:"Your story in photos, dates and handwritten notes.",o:"Photos, dates, colors, message",k:"box",a:"#E4DCF5",b:"#9F86D6",img:""},
+ {id:3,n:"Hot Wheels Bouquet, Black Wrap",col:"Hot Wheels Bouquets",tags:"birthday fathers graduation eid thankyou",rec:"him friends",p:3000,d:"A Hot Wheels car with flowers in elegant black wrapping.",o:"Car choice, flower colors, note",k:"car",a:"#D6E8F7",b:"#1F1F2E",img:""},
+ {id:4,n:"Hot Wheels Bouquet, Blue Wrap",col:"Hot Wheels Bouquets",tags:"birthday fathers graduation eid sorry",rec:"him friends",p:3000,d:"Car and flower bouquet wrapped in navy blue.",o:"Car choice, flower colors, note",k:"car",a:"#F9DDE4",b:"#1F2A4A",img:""},
+ {id:5,n:"Birthday Memory Box with Fairy Lights",col:"Personalized Memory Boxes",tags:"birthday friendship",rec:"her him friends",p:4000,d:"Photos, fairy lights and personalized decorations.",o:"Photos, age or name, colors",k:"lights",a:"#E4DCF5",b:"#F2A3BC",img:""},
+ {id:6,n:"Self-Care Hamper",col:"Self-Care Gift Boxes",tags:"womens mothers daughters getwell thankyou birthday",rec:"her family",p:5500,d:"Teddy bear, chocolates, scrunchies, fluffy socks and a mug.",o:"Colors, mug design, extras",k:"care",a:"#F9DDE4",b:"#C9B3F0",img:""},
+ {id:7,n:"Strawberry Gift Box",col:"Customized Gift Hampers",tags:"birthday valentine thankyou friendship daughters",rec:"her friends",p:3800,d:"Strawberry-themed treats and keepsakes.",o:"Contents, colors, note",k:"berry",a:"#FFF0E6",b:"#E04F5F",img:""},
+ {id:8,n:"Cute Strawberry Mug",col:"Personalized Mugs",tags:"birthday friendship thankyou teachers",rec:"her friends",p:1200,d:"Personalized mug with name or short message.",o:"Name, message, color",k:"mug",a:"#F9DDE4",b:"#E04F5F",img:""},
+ {id:9,n:"Photo Collage Frame",col:"Photo Collage Frames",tags:"anniversary birthday mothers fathers wedding friendship",rec:"him her family",p:2500,d:"Your favorite pictures in one frame.",o:"Photos, frame color, caption",k:"frame",a:"#D6E8F7",b:"#7A1F3D",img:""},
+ {id:10,n:"Handmade Card",col:"Handmade Cards and Scrapbooks",tags:"birthday valentine sorry missyou thankyou eid teachers mothers",rec:"him her friends family",p:600,d:"Hand-finished card with your message.",o:"Message, colors, theme",k:"card",a:"#E4DCF5",b:"#F2A3BC",img:""},
+ {id:11,n:"Mini Scrapbook",col:"Handmade Cards and Scrapbooks",tags:"anniversary birthday friendship missyou romantic",rec:"him her friends",p:2200,d:"A small book of your memories.",o:"Photos, pages, theme",k:"card",a:"#FFF0E6",b:"#9F86D6",img:""},
+ {id:12,n:"Romantic Hamper",col:"Customized Gift Hampers",tags:"valentine anniversary romantic sorry missyou engagement",rec:"him her",p:6500,d:"Flowers, chocolates and keepsakes in a curated box.",o:"Flowers, chocolates, note",k:"care",a:"#F9DDE4",b:"#7A1F3D",img:""},
+ {id:13,n:"Gift Basket for Him",col:"Gifts for Him",tags:"birthday fathers thankyou graduation eid",rec:"him",p:5000,d:"Curated around his hobbies and favorites.",o:"Hobbies, colors, items",k:"basket",a:"#D6E8F7",b:"#1F2A4A",img:""},
+ {id:14,n:"Mini Budget Gift",col:"Mini Budget-Friendly Gifts",tags:"teachers thankyou friendship eid birthday ramadan",rec:"friends family",p:1000,d:"A small, sweet gift with a personal touch.",o:"Theme, colors, note",k:"mug",a:"#E4DCF5",b:"#6FA8DC",img:""},
+ {id:15,n:"Corporate Gift Box",col:"Corporate and Bulk Gifts",tags:"newyear eid ramadan christmas",rec:"family",p:2500,d:"Bulk boxes for teams and clients. Minimum quantity confirmed on WhatsApp.",o:"Quantity, branding colors, note",k:"box",a:"#D6E8F7",b:"#1F2A4A",img:""},
+ {id:16,n:"Mango Gift Basket (Seasonal)",col:"Birthday Gift Baskets",tags:"mango eid eidul birthday thankyou",rec:"family friends",p:4500,d:"A seasonal basket. Availability depends on mango season.",o:"Size, wrapping, note",k:"mango",a:"#FFF0E6",b:"#F5B63D",img:""}
 ];
 const OCC = [["Birthday Gifts","birthday"],["Anniversary Gifts","anniversary"],["Wedding Gifts","wedding"],["Engagement Gifts","engagement"],["Bridal Gifts","bridal"],["Nikah Gifts","nikah"],["Valentine's Day","valentine"],["Mother's Day","mothers"],["Father's Day","fathers"],["Teacher's Day","teachers"],["Women's Day","womens"],["Daughter's Gifts","daughters"],["Graduation Gifts","graduation"],["Eid Gifts","eid"],["Ramadan Gifts","ramadan"],["Eid-ul-Adha Gifts","eidul"],["New Year Gifts","newyear"],["Christmas Gifts","christmas"],["Friendship Day Gifts","friendship"],["Mango Gift Baskets","mango"]];
 const SENT = [["I'm Sorry Gifts","sorry"],["Miss You Gifts","missyou"],["Romantic Gifts","romantic"],["Thank You Gifts","thankyou"],["Get Well Soon Gifts","getwell"]];
-const COLS = ["Customized Gift Hampers and Baskets","Memory Boxes","Photo Collage Boxes","Birthday Gift Boxes","Self-Care Hampers","Hot Wheels Bouquets","Gifts for Him","Gifts for Her","Personalized Mugs","Scrapbooks","Teddy Bear Gift Boxes","Corporate and Bulk Gifts"];
+const COLS = ["Personalized Memory Boxes","Customized Gift Hampers","Hot Wheels Bouquets","Gifts for Him","Gifts for Her","Self-Care Gift Boxes","Personalized Mugs","Photo Collage Frames","Handmade Cards and Scrapbooks","Birthday Gift Baskets","Mini Budget-Friendly Gifts","Corporate and Bulk Gifts"];
 const REC = [["For Him","him"],["For Her","her"],["For Friends","friends"],["For Family","family"]];
 /* ============ END OF EDIT AREA ============ */
 
@@ -272,7 +269,7 @@ const pic=p=>p.img?'<img src="'+p.img+'" alt="'+p.n+'" loading="lazy">':art(p.k,
 
 function card(p){
  const on=wish.includes(p.id);
- return '<article class="card"><button class="wish'+(on?' on':'')+'" data-w="'+p.id+'" aria-pressed="'+on+'" aria-label="Save '+p.n+' to wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21C5 15.500 3 12 3 8.800A4.800 4.800 0 0112 6a4.800 4.800 0 019 2.800c0 3.200-2 6.700-9 12.200z"/></svg></button><div class="pic">'+pic(p)+'</div><div class="body"><small>'+p.col+'</small><h3>'+p.n+'</h3><small>'+p.d+'</small><small><b>Customize:</b> '+p.o+'</small><div class="row"><span class="price">'+(p.p?"From "+money(p.p):"Price on Request")+'</span><button class="btn sm" data-a="'+p.id+'">Add</button></div></div></article>';
+ return '<article class="card"><button class="wish'+(on?' on':'')+'" data-w="'+p.id+'" aria-pressed="'+on+'" aria-label="Save '+p.n+' to wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21C5 15.500 3 12 3 8.800A4.800 4.800 0 0112 6a4.800 4.800 0 019 2.800c0 3.200-2 6.700-9 12.200z"/></svg></button><div class="pic">'+pic(p)+'</div><div class="body"><small>'+p.col+'</small><h3>'+p.n+'</h3><small>'+p.d+'</small><small><b>Customize:</b> '+p.o+'</small><div class="row"><span class="price">From '+money(p.p)+'</span><button class="btn sm" data-a="'+p.id+'">Add</button></div></div></article>';
 }
 function match(p){
  const q=F.q.toLowerCase();
@@ -318,7 +315,7 @@ function saveCart(){store.set("wrap_cart",cart);renderCart()}
 function renderCart(){
  let sub=0,n=0;
  $("#cartList").innerHTML=cart.length?cart.map((c,i)=>{const p=PRODUCTS.find(x=>x.id==c.id);if(!p)return"";sub+=p.p*c.q;n+=c.q;
-  return '<div class="ci"><b>'+p.n+'<br><small>'+(p.p?money(p.p)+' each':'Price on Request')+'</small></b><div class="q"><button data-i="'+i+'" data-q="-1" aria-label="Decrease">-</button><span>'+c.q+'</span><button data-i="'+i+'" data-q="1" aria-label="Increase">+</button></div><button class="x" data-rm="'+(i+1)+'" aria-label="Remove '+p.n+'">&times;</button></div>'}).join(""):'<p style="color:var(--mut)">Your cart is empty. Add gifts above, or just describe your own idea in the form.</p>';
+  return '<div class="ci"><b>'+p.n+'<br><small>'+money(p.p)+' each</small></b><div class="q"><button data-i="'+i+'" data-q="-1" aria-label="Decrease">-</button><span>'+c.q+'</span><button data-i="'+i+'" data-q="1" aria-label="Increase">+</button></div><button class="x" data-rm="'+(i+1)+'" aria-label="Remove '+p.n+'">&times;</button></div>'}).join(""):'<p style="color:var(--mut)">Your cart is empty. Add gifts above, or just describe your own idea in the form.</p>';
  $("#sub").textContent=money(sub);$("#cc").textContent=n;
 }
 function reqIdea(t){$("#f-items").value=t;setTimeout(()=>$("#f-items").focus(),400)}
@@ -328,15 +325,15 @@ function waLink(text){return "https://wa.me/"+WA_NUMBER+(text?"?text="+encodeURI
 $("#orderForm").addEventListener("submit",e=>{
  e.preventDefault();
  const v=id=>$(id).value.trim(), st=$("#status");st.style.display="block";
- if(!v("#f-name")){st.textContent="Please enter your name.";$("#f-name").focus();return}
+ if(/X/i.test(WA_NUMBER)){st.textContent="Owner note: replace WA_NUMBER at the top of the script with your real WhatsApp number first.";return}
  if(!v("#f-city")){st.textContent="Please enter your delivery city so we can confirm availability.";$("#f-city").focus();return}
  if(!cart.length&&!v("#f-items")&&!v("#f-msg")){st.textContent="Add a gift to the cart or describe what you would like.";return}
- let sub=0,lines=cart.map((c,i)=>{const p=PRODUCTS.find(x=>x.id==c.id);sub+=p.p*c.q;return (i+1)+". "+p.n+" | Quantity: "+c.q+" | Price: "+(p.p?money(p.p*c.q):"Price on Request")+" | Customization: "+(v("#f-items")||v("#f-col")||"to be discussed")});
+ let sub=0,lines=cart.map((c,i)=>{const p=PRODUCTS.find(x=>x.id==c.id);sub+=p.p*c.q;return (i+1)+". "+p.n+" x"+c.q+" - "+money(p.p*c.q)});
  const m=["Hello Wrapistry! I would like to enquire about this order.","",
-  cart.length?"*Selected gifts*\n"+lines.join("\n")+"\nSubtotal of items with listed prices: "+(sub?money(sub):"Price on Request"):"*Custom gift request (no sample selected)*","",
-  "*Customer*","Name: "+v("#f-name"),"","*Customization*","Recipient: "+(v("#f-rec")||"-"),"Occasion: "+(v("#f-occ")||"-"),"Budget: "+(v("#f-bud")?"PKR "+v("#f-bud"):"-"),"Preferred colors: "+(v("#f-col")||"-"),"Items to include: "+(v("#f-items")||"-"),"Personal message: "+(v("#f-msg")||"-"),"",
+  cart.length?"*Selected gifts*\n"+lines.join("\n")+"\nEstimated subtotal (sample prices): "+money(sub):"*Custom gift request (no sample selected)*","",
+  "*Customization*","Recipient: "+(v("#f-rec")||"-"),"Occasion: "+(v("#f-occ")||"-"),"Budget: "+(v("#f-bud")?"PKR "+v("#f-bud"):"-"),"Preferred colors: "+(v("#f-col")||"-"),"Items to include: "+(v("#f-items")||"-"),"Personal message: "+(v("#f-msg")||"-"),"",
   "*Delivery*","City: "+v("#f-city"),"Required date: "+(v("#f-date")||"-"),"",
-  "Please confirm availability, price, delivery charges and timeline. I understand the order is confirmed only after your confirmation and payment of the 50% advance."].join("\n");
+  "Please confirm availability, delivery charges and timeline. I understand the order is confirmed only after your confirmation and payment of the 50% advance."].join("\n");
  window.open(waLink(m),"_blank");
  st.textContent="WhatsApp should now open with your message ready. Press Send inside WhatsApp. Nothing has been sent yet, and your order is not confirmed until we reply and the 50% advance is paid.";
 });
@@ -352,7 +349,7 @@ $("#heroArt").innerHTML=HERO_IMG?'<img src="'+HERO_IMG+'" alt="Wrapistry gift">'
 $("#waContact").href=$("#waFloat").href=waLink("Hello Wrapistry! I have a question about your gifts.");
 $("#yr").textContent=new Date().getFullYear();
 $("#f-date").min=new Date().toISOString().split("T")[0];
-$("#social").innerHTML=[["WhatsApp","https://wa.me/"+WA_NUMBER],["Instagram @wrapistryy.co",INSTAGRAM],["Facebook",FACEBOOK],["TikTok",TIKTOK]].filter(s=>s[1]).map(s=>'<a href="'+s[1]+'" target="_blank" rel="noopener">'+s[0]+'</a> ').join("");
+$("#social").innerHTML=[["Instagram",INSTAGRAM],["Facebook",FACEBOOK],["TikTok",TIKTOK]].filter(s=>s[1]).map(s=>'<a href="'+s[1]+'" target="_blank" rel="noopener">'+s[0]+'</a> ').join("");
 cart=cart.filter(c=>PRODUCTS.some(p=>p.id==c.id));
 renderGrid();renderOthers();renderCart();
 </script>
